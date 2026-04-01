@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antoken | Custom MTG Tokens</title>
+    <title>Antoken | Conquiste a Mesa com Custom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700;800&family=Metamorphous&family=Pirata+One&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Paleta de Cores e Tipografia */
+        /* Paleta de Cores de Alta Fantasia */
         :root {
-            --bg-color: #0d0d0d;
-            --surface-color: #1a1a1a;
-            --primary-gold: #d4af37;
+            --bg-deep: #050505;
+            --surface-stone: #111111;
+            --fiery-orange: #ff4500;
+            --fiery-gold: #d4af37;
+            --arcane-blue: #00bfff;
+            --arcane-purple: #9400d3;
+            --mana-green: #25D366; /* WhatsApp, mas com toque rúnico */
             --text-light: #f5f5f5;
-            --text-muted: #a0a0a0;
-            --whatsapp-green: #25D366;
+            --text-parchment: #e0d1b3;
+            --text-muted: #909090;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto Condensed', sans-serif;
             /* Evita a seleção de texto e imagens no site inteiro */
             user-select: none; 
             -webkit-user-select: none;
@@ -28,124 +35,237 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-deep);
             color: var(--text-light);
             line-height: 1.6;
         }
 
-        /* Navegação */
+        h1, h2, h3 {
+            font-family: 'Metamorphous', serif;
+        }
+
+        /* Navegação Imersiva: Metal e Runas */
         header {
-            background-color: var(--surface-color);
-            padding: 1rem 5%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+            border-bottom: 3px solid #222;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5); /* Brilho de lava pulsante */
+            padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--primary-gold);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .logo {
-            height: 50px;
+            height: 60px;
             pointer-events: none; 
+            filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.8)); /* Brilho de lava na logo */
         }
 
         nav a {
-            color: var(--text-light);
+            color: var(--text-parchment);
             text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
+            margin-left: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--fiery-orange);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         nav a:hover {
-            color: var(--primary-gold);
+            color: var(--fiery-gold);
+            text-shadow: 0 0 15px var(--fiery-gold);
         }
 
-        /* Hero Section */
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Hero Section Agressiva: O Portal dos Dragões */
         .hero {
             text-align: center;
-            padding: 6rem 5%;
-            /* Fundo com o nome corrigido para não dar erro */
-            background: linear-gradient(rgba(13, 13, 13, 0.9), rgba(13, 13, 13, 0.9)), url('img/dragao-post.jpg') center/cover;
+            padding: 10rem 5% 12rem;
+            background: 
+                linear-gradient(rgba(5, 5, 5, 0.95), rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.95)),
+                url('img/dragao-post.jpg') center/cover;
+            border-bottom: 5px solid #222;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/lava_texture_tile.jpg'); /* Textura de lava rústica */
+            opacity: 0.1;
+            mix-blend-mode: color-dodge;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--primary-gold);
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            font-family: 'Pirata One', cursive; /* Fonte metálica pesada */
+            background: linear-gradient(135deg, #eee 0%, #ccc 50%, #eee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 69, 0, 0.4));
+            animation: fieryPulse 2s infinite;
+        }
+
+        @keyframes fieryPulse {
+            0% { filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 69, 0, 0.4)); }
+            50% { filter: drop-shadow(0 0 15px rgba(255, 69, 0, 1)) drop-shadow(0 0 30px rgba(255, 69, 0, 0.8)); }
+            100% { filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 69, 0, 0.4)); }
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-family: 'Crimson Pro', serif;
+            font-weight: 600;
         }
 
+        /* Botão Principal: Artefato Mágico */
         .cta-button {
-            background-color: var(--primary-gold);
-            color: #000;
-            padding: 1rem 2.5rem;
+            background: radial-gradient(circle, rgba(160,0,0,1) 0%, rgba(100,0,0,1) 60%, rgba(60,0,0,1) 100%);
+            border: 4px solid #333;
+            color: #eee;
+            padding: 1.2rem 3rem;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 800;
             border-radius: 5px;
             text-transform: uppercase;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
             display: inline-block;
+            position: relative;
+            animation: artifactPulse 3s infinite;
+        }
+
+        @keyframes artifactPulse {
+            0% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.9); }
+            100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); }
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/fiery_dust_texture.png'); /* Textura de poeira rúnica */
+            opacity: 0.1;
+            mix-blend-mode: screen;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px) scale(1.05);
+            background: radial-gradient(circle, rgba(180,0,0,1) 0%, rgba(120,0,0,1) 60%, rgba(80,0,0,1) 100%);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.6);
         }
 
-        /* Galeria */
+        /* Galeria de Alta Intensidade */
         .portfolio-section {
-            padding: 5rem 5%;
+            padding: 8rem 5% 10rem;
             text-align: center;
+            background: linear-gradient(180deg, var(--bg-deep) 0%, var(--surface-stone) 50%, var(--bg-deep) 100%);
+            position: relative;
         }
 
         .portfolio-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--primary-gold);
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #eee 0%, #ccc 50%, #eee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.8)); /* Brilho arcano azul */
         }
 
         .grid-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
         }
 
+        /* Cartas: Artefatos Cinzelados */
         .card {
-            background-color: var(--surface-color);
-            border-radius: 10px;
+            background: radial-gradient(circle, #222 0%, #111 60%, #000 100%);
+            border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #333;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            border: 3px solid #333;
             cursor: pointer;
+            position: relative;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.8);
         }
 
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
-            border-color: var(--primary-gold);
-            z-index: 10;
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/artifact_base_tile.jpg'); /* Textura de metal forjado rústico */
+            opacity: 0.05;
+            mix-blend-mode: screen;
         }
 
         .card img {
             width: 100%;
-            height: 350px;
+            height: 380px;
             object-fit: cover;
             display: block;
-            border-bottom: 2px solid #222;
+            border-bottom: 4px solid #222;
         }
 
-        /* Lightbox (Visualizador de Imagem Ampliada) */
+        /* Efeito de Carta de Jogo flutuante */
+        .card:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+            border-color: var(--fiery-orange);
+            z-index: 10;
+        }
+
+        /* Brilhos Arcanos Associados à Cor do Token no Hover */
+        .card:hover:nth-child(5n+1) { box-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--fiery-gold); } /* Ouro */
+        .card:hover:nth-child(5n+2) { box-shadow: 0 0 40px rgba(0, 191, 255, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--arcane-blue); } /* Azul */
+        .card:hover:nth-child(5n+3) { box-shadow: 0 0 40px rgba(148, 0, 211, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--arcane-purple); } /* Púrpura */
+        .card:hover:nth-child(5n+4) { box-shadow: 0 0 40px rgba(255, 69, 0, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--fiery-orange); } /* Laranja */
+        .card:hover:nth-child(5n+5) { box-shadow: 0 0 40px rgba(37, 211, 102, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--mana-green); } /* Verde */
+
+        /* Lightbox Rúnica */
         #lightbox {
             display: none;
             position: fixed;
@@ -154,73 +274,140 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(0, 0, 0, 0.98);
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
 
         #lightbox img {
-            max-width: 90%;
-            max-height: 85vh;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-            border: 2px solid var(--primary-gold);
+            max-width: 92%;
+            max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(255, 69, 0, 0.6);
+            border: 4px solid var(--fiery-orange);
             pointer-events: none;
         }
 
         .close-btn {
             position: absolute;
-            top: 20px;
-            right: 40px;
-            color: var(--primary-gold);
-            font-size: 40px;
-            font-weight: bold;
+            top: 30px;
+            right: 50px;
+            color: var(--fiery-orange);
+            font-size: 50px;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 800;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: color 0.3s, text-shadow 0.3s;
         }
 
         .close-btn:hover {
             color: #fff;
+            text-shadow: 0 0 15px var(--fiery-orange);
         }
 
-        /* Footer */
+        /* Footer Rúnico e Forjado */
         footer {
-            background-color: var(--surface-color);
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+            border-top: 4px solid #222;
             text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid #333;
-            margin-top: 3rem;
+            padding: 5rem 2rem 4rem;
+            box-shadow: 0 -5px 15px rgba(37, 211, 102, 0.3); /* Brilho sutil verde de mana */
         }
 
-        .whatsapp-button {
-            display: inline-block;
-            background-color: var(--whatsapp-green);
-            color: #fff;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin: 1.5rem 0;
-            transition: background-color 0.3s, transform 0.2s;
+        footer .logo {
+            height: 50px;
+            filter: drop-shadow(0 0 10px rgba(37, 211, 102, 0.8)); /* Brilho de mana verde na logo */
         }
 
-        .whatsapp-button:hover {
-            background-color: #1ebe57;
-            transform: scale(1.05);
+        footer h3 {
+            color: #eee;
+            margin-bottom: 0.8rem;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            font-family: 'Metamorphous', serif;
         }
 
         footer p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: var(--text-parchment);
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Responsividade */
+        /* Botão do WhatsApp: Cristal Rúnico */
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #004d1a 0%, #001a09 60%, #000 100%);
+            border: 3px solid #333;
+            color: #eee;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            font-family: 'Metamorphous', serif;
+            letter-spacing: 1px;
+            margin: 2rem 0;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+            position: relative;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+            animation: manaPulse 3s infinite;
+        }
+
+        @keyframes manaPulse {
+            0% { box-shadow: 0 0 20px rgba(37, 211, 102, 0.6); }
+            50% { box-shadow: 0 0 30px rgba(37, 211, 102, 0.9); }
+            100% { box-shadow: 0 0 20px rgba(37, 211, 102, 0.6); }
+        }
+
+        .whatsapp-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/green_dust_texture.png'); /* Textura de mana verde */
+            opacity: 0.05;
+            mix-blend-mode: color-dodge;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: radial-gradient(circle, #005d1a 0%, #002a09 60%, #000 100%);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.8), 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .whatsapp-icon {
+            margin-right: 12px;
+            width: 28px;
+            height: 28px;
+            pointer-events: none;
+        }
+
+        footer .copyright {
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: 'Roboto Condensed', sans-serif;
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+        }
+
+        /* Responsividade em Campo de Batalha */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            header { flex-direction: column; gap: 1rem; }
-            nav a { margin: 0 1rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            header { flex-direction: column; gap: 1rem; padding: 1rem; }
+            nav a { margin: 0 1rem; font-size: 1rem; }
+            .portfolio-section h2 { font-size: 2.2rem; }
+            .grid-gallery { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+            .card img { height: 320px; }
+            .whatsapp-button { font-size: 1rem; padding: 0.8rem 2rem; }
         }
     </style>
 </head>
@@ -236,9 +423,9 @@
     </header>
 
     <section id="inicio" class="hero">
-        <h1>Eleve o nível da sua mesa</h1>
-        <p>Tokens personalizados de alta qualidade para Magic: The Gathering. Artes exclusivas que trazem ainda mais imersão e estilo para as suas partidas.</p>
-        <a href="#galeria" class="cta-button">Ver Portfólio</a>
+        <h1>Conquiste a Mesa com Custom</h1>
+        <p>A Antoken forja tokens personalizados de Alta Fantasia. Traga artes exclusivas e poder arcano imersivo para os seus duelos de Magic: The Gathering.</p>
+        <a href="#galeria" class="cta-button">Liberar o Arsenal</a>
     </section>
 
     <section id="galeria" class="portfolio-section">
@@ -274,15 +461,16 @@
     </div>
 
     <footer id="contato">
-        <img src="img/logo-branco.png" alt="Antoken Logo" style="height: 50px; margin-bottom: 1rem; pointer-events: none;">
-        <h3 style="color: var(--text-light); margin-bottom: 0.5rem;">Pronto para encomendar os seus?</h3>
-        <p>Entre em contato diretamente pelo WhatsApp para orçamentos e pedidos.</p>
+        <img src="img/logo-branco.png" alt="Antoken Logo" class="logo">
+        <h3>Pronto para invocar os seus?</h3>
+        <p>Invoque nossa forja diretamente pelo WhatsApp para orçamentos e pedidos rúnicos.</p>
         
         <a href="https://wa.me/5511945948096" target="_blank" class="whatsapp-button">
-            📱 Chamar no WhatsApp: (11) 94594-8096
+            <svg class="whatsapp-icon" viewBox="0 0 448 512"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.4-8.6-44.5-27.5-16.4-14.7-27.5-32.8-30.7-38.3-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.6-9.3 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+            Invocação WhatsApp: (11) 94594-8096
         </a>
         
-        <p style="margin-top: 2rem;">&copy; 2026 Antoken. Todos os direitos reservados.</p>
+        <p class="copyright">&copy; 2026 Antoken. Forja rúnica reservada.</p>
     </footer>
 
     <script>
@@ -291,7 +479,6 @@
         const closeBtn = document.getElementById('close-btn');
         const cards = document.querySelectorAll('.card img');
 
-        // Abrir Lightbox ao clicar na imagem
         cards.forEach(img => {
             img.addEventListener('click', () => {
                 lightbox.style.display = 'flex';
@@ -299,7 +486,6 @@
             });
         });
 
-        // Fechar Lightbox
         const closeLightbox = () => { lightbox.style.display = 'none'; }
         closeBtn.addEventListener('click', closeLightbox);
         
@@ -309,7 +495,7 @@
             }
         });
 
-        // Segurança Extra (Bloqueio de atalhos)
+        // Segurança Rúnica Extra
         document.addEventListener('keydown', (e) => {
             if (
                 e.key === 'F12' || 
