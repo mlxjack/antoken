@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antoken | Custom MTG Tokens</title>
+    <style>
+        /* Paleta de Cores e Tipografia */
+        :root {
+            --bg-color: #0d0d0d;
+            --surface-color: #1a1a1a;
+            --primary-gold: #d4af37;
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Evita a seleção de texto e imagens no site inteiro */
+            user-select: none; 
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Navegação */
+        header {
+            background-color: var(--surface-color);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            height: 50px;
+            pointer-events: none; 
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 5%;
+            /* Fundo com o nome corrigido para não dar erro */
+            background: linear-gradient(rgba(13, 13, 13, 0.9), rgba(13, 13, 13, 0.9)), url('img/dragao-post.jpg') center/cover;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            background-color: var(--primary-gold);
+            color: #000;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            text-transform: uppercase;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Galeria */
+        .portfolio-section {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .portfolio-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-gold);
+        }
+
+        .grid-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
+            border-color: var(--primary-gold);
+            z-index: 10;
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 2px solid #222;
+        }
+
+        /* Lightbox (Visualizador de Imagem Ampliada) */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--primary-gold);
+            pointer-events: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: var(--primary-gold);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--surface-color);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid #333;
+            margin-top: 3rem;
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            background-color: var(--whatsapp-green);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 1.5rem 0;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1ebe57;
+            transform: scale(1.05);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            header { flex-direction: column; gap: 1rem; }
+            nav a { margin: 0 1rem; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <header>
+        <img src="img/logo-branco.png" alt="Antoken Logo" class="logo">
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#galeria">Galeria</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>Eleve o nível da sua mesa</h1>
+        <p>Tokens personalizados de alta qualidade para Magic: The Gathering. Artes exclusivas que trazem ainda mais imersão e estilo para as suas partidas.</p>
+        <a href="#galeria" class="cta-button">Ver Portfólio</a>
+    </section>
+
+    <section id="galeria" class="portfolio-section">
+        <h2>Nosso Arsenal de Tokens</h2>
+        <div class="grid-gallery">
+            <div class="card"><img src="img/Anjo-A02.jpg" alt="Token Anjo" draggable="false"></div>
+            <div class="card"><img src="img/Ave-A01-post.png" alt="Token Ave 1" draggable="false"></div>
+            <div class="card"><img src="img/Ave-A02-post.png" alt="Token Ave 2" draggable="false"></div>
+            <div class="card"><img src="img/Aventura-AV01-post.png" alt="Token Aventura" draggable="false"></div>
+            <div class="card"><img src="img/coelho-apresentacao.jpg" alt="Token Coelho Apresentação" draggable="false"></div>
+            <div class="card"><img src="img/coelho-C02-post.jpg" alt="Token Coelho 2" draggable="false"></div>
+            <div class="card"><img src="img/Comida-C01-post.jpg" alt="Token Comida" draggable="false"></div>
+            <div class="card"><img src="img/deneris-post.jpg" alt="Token Deneris" draggable="false"></div>
+            <div class="card"><img src="img/dragao-post.jpg" alt="Token Dragão" draggable="false"></div>
+            <div class="card"><img src="img/Esquilo-E01-post.png" alt="Token Esquilo" draggable="false"></div>
+            <div class="card"><img src="img/FTmana-FTM01-post.png" alt="Token FTmana" draggable="false"></div>
+            <div class="card"><img src="img/Mapa-M01--post.png" alt="Token Mapa" draggable="false"></div>
+            <div class="card"><img src="img/Monarca-M01-post.jpg" alt="Token Monarca" draggable="false"></div>
+            <div class="card"><img src="img/Passaro-ilusao-post.png" alt="Token Pássaro Ilusão" draggable="false"></div>
+            <div class="card"><img src="img/Pista-P01-post.jpg" alt="Token Pista" draggable="false"></div>
+            <div class="card"><img src="img/Timeless-witness-TW01-post.png" alt="Token Timeless Witness" draggable="false"></div>
+            <div class="card"><img src="img/token-fada-apresentacao.jpg" alt="Token Fada Apresentação" draggable="false"></div>
+            <div class="card"><img src="img/Tramar-T01-post.png" alt="Token Tramar" draggable="false"></div>
+            <div class="card"><img src="img/Velocidade-V01-pos.png" alt="Token Velocidade" draggable="false"></div>
+            <div class="card"><img src="img/Warp-W01-post.png" alt="Token Warp" draggable="false"></div>
+            <div class="card"><img src="img/Tesouro-T01.jpg" alt="Token Tesouro" draggable="false"></div>
+        </div>
+    </section>
+
+    <div id="lightbox">
+        <span class="close-btn" id="close-btn">&times;</span>
+        <img id="lightbox-img" src="" alt="Token em Destaque">
+    </div>
+
+    <footer id="contato">
+        <img src="img/logo-branco.png" alt="Antoken Logo" style="height: 50px; margin-bottom: 1rem; pointer-events: none;">
+        <h3 style="color: var(--text-light); margin-bottom: 0.5rem;">Pronto para encomendar os seus?</h3>
+        <p>Entre em contato diretamente pelo WhatsApp para orçamentos e pedidos.</p>
+        
+        <a href="https://wa.me/5511945948096" target="_blank" class="whatsapp-button">
+            📱 Chamar no WhatsApp: (11) 94594-8096
+        </a>
+        
+        <p style="margin-top: 2rem;">&copy; 2026 Antoken. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-btn');
+        const cards = document.querySelectorAll('.card img');
+
+        // Abrir Lightbox ao clicar na imagem
+        cards.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
+
+        // Fechar Lightbox
+        const closeLightbox = () => { lightbox.style.display = 'none'; }
+        closeBtn.addEventListener('click', closeLightbox);
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg && e.target !== closeBtn) {
+                closeLightbox();
+            }
+        });
+
+        // Segurança Extra (Bloqueio de atalhos)
+        document.addEventListener('keydown', (e) => {
+            if (
+                e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                (e.ctrlKey && e.key === 'c') || 
+                (e.ctrlKey && e.key === 'u') || 
+                (e.ctrlKey && e.key === 's') ||
+                (e.ctrlKey && e.key === 'p') 
+            ) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>
