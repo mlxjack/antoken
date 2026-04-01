@@ -16,7 +16,7 @@
             --fiery-gold: #d4af37;
             --arcane-blue: #00bfff;
             --arcane-purple: #9400d3;
-            --mana-green: #25D366; /* WhatsApp, mas com toque rúnico */
+            --mana-green: #25D366;
             --text-light: #f5f5f5;
             --text-parchment: #e0d1b3;
             --text-muted: #909090;
@@ -27,7 +27,6 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Roboto Condensed', sans-serif;
-            /* Evita a seleção de texto e imagens no site inteiro */
             user-select: none; 
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -48,7 +47,7 @@
         header {
             background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
             border-bottom: 3px solid #222;
-            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5); /* Brilho de lava pulsante */
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
             padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
@@ -61,7 +60,7 @@
         .logo {
             height: 60px;
             pointer-events: none; 
-            filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.8)); /* Brilho de lava na logo */
+            filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.8));
         }
 
         nav a {
@@ -116,7 +115,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('img/lava_texture_tile.jpg'); /* Textura de lava rústica */
+            background: url('img/lava_texture_tile.jpg');
             opacity: 0.1;
             mix-blend-mode: color-dodge;
         }
@@ -126,7 +125,7 @@
             margin-bottom: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            font-family: 'Pirata One', cursive; /* Fonte metálica pesada */
+            font-family: 'Pirata One', cursive;
             background: linear-gradient(135deg, #eee 0%, #ccc 50%, #eee 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -149,7 +148,6 @@
             font-weight: 600;
         }
 
-        /* Botão Principal: Artefato Mágico */
         .cta-button {
             background: radial-gradient(circle, rgba(160,0,0,1) 0%, rgba(100,0,0,1) 60%, rgba(60,0,0,1) 100%);
             border: 4px solid #333;
@@ -175,18 +173,6 @@
             100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); }
         }
 
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('img/fiery_dust_texture.png'); /* Textura de poeira rúnica */
-            opacity: 0.1;
-            mix-blend-mode: screen;
-        }
-
         .cta-button:hover {
             transform: translateY(-5px) scale(1.05);
             background: radial-gradient(circle, rgba(180,0,0,1) 0%, rgba(120,0,0,1) 60%, rgba(80,0,0,1) 100%);
@@ -209,7 +195,7 @@
             background: linear-gradient(135deg, #eee 0%, #ccc 50%, #eee 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.8)); /* Brilho arcano azul */
+            filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.8));
         }
 
         .grid-gallery {
@@ -218,7 +204,7 @@
             gap: 2.5rem;
         }
 
-        /* Cartas: Artefatos Cinzelados */
+        /* Cartas: Artefatos Cinzelados COM MARCA D'ÁGUA */
         .card {
             background: radial-gradient(circle, #222 0%, #111 60%, #000 100%);
             border-radius: 12px;
@@ -230,6 +216,7 @@
             box-shadow: 5px 5px 15px rgba(0,0,0,0.8);
         }
 
+        /* Camada 1: Textura de Metal */
         .card::before {
             content: '';
             position: absolute;
@@ -237,9 +224,27 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('img/artifact_base_tile.jpg'); /* Textura de metal forjado rústico */
+            background: url('img/artifact_base_tile.jpg');
             opacity: 0.05;
             mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Camada 2: A Marca D'água com a sua logo */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 65%; /* Tamanho da marca d'água na carta */
+            height: 65%;
+            background: url('img/logo-branco.png') no-repeat center/contain;
+            opacity: 0.25; /* Transparência (0.1 é muito fraco, 1.0 é sólido) */
+            pointer-events: none; /* Deixa o clique passar para a imagem */
+            z-index: 5;
+            filter: drop-shadow(0 0 8px rgba(0,0,0,0.9)); /* Sombra para destacar em fundos claros */
         }
 
         .card img {
@@ -258,12 +263,11 @@
             z-index: 10;
         }
 
-        /* Brilhos Arcanos Associados à Cor do Token no Hover */
-        .card:hover:nth-child(5n+1) { box-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--fiery-gold); } /* Ouro */
-        .card:hover:nth-child(5n+2) { box-shadow: 0 0 40px rgba(0, 191, 255, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--arcane-blue); } /* Azul */
-        .card:hover:nth-child(5n+3) { box-shadow: 0 0 40px rgba(148, 0, 211, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--arcane-purple); } /* Púrpura */
-        .card:hover:nth-child(5n+4) { box-shadow: 0 0 40px rgba(255, 69, 0, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--fiery-orange); } /* Laranja */
-        .card:hover:nth-child(5n+5) { box-shadow: 0 0 40px rgba(37, 211, 102, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--mana-green); } /* Verde */
+        .card:hover:nth-child(5n+1) { box-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--fiery-gold); }
+        .card:hover:nth-child(5n+2) { box-shadow: 0 0 40px rgba(0, 191, 255, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--arcane-blue); }
+        .card:hover:nth-child(5n+3) { box-shadow: 0 0 40px rgba(148, 0, 211, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--arcane-purple); }
+        .card:hover:nth-child(5n+4) { box-shadow: 0 0 40px rgba(255, 69, 0, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--fiery-orange); }
+        .card:hover:nth-child(5n+5) { box-shadow: 0 0 40px rgba(37, 211, 102, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9); border-color: var(--mana-green); }
 
         /* Lightbox Rúnica */
         #lightbox {
@@ -280,13 +284,37 @@
             flex-direction: column;
         }
 
-        #lightbox img {
+        .lightbox-content {
+            position: relative;
             max-width: 92%;
+            max-height: 88vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #lightbox img {
+            max-width: 100%;
             max-height: 88vh;
             border-radius: 12px;
             box-shadow: 0 0 40px rgba(255, 69, 0, 0.6);
             border: 4px solid var(--fiery-orange);
             pointer-events: none;
+        }
+
+        /* Marca D'água na imagem ampliada */
+        .lightbox-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            height: 50%;
+            background: url('img/logo-branco.png') no-repeat center/contain;
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 1001;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.9));
         }
 
         .close-btn {
@@ -299,6 +327,7 @@
             font-weight: 800;
             cursor: pointer;
             transition: color 0.3s, text-shadow 0.3s;
+            z-index: 1005;
         }
 
         .close-btn:hover {
@@ -312,12 +341,12 @@
             border-top: 4px solid #222;
             text-align: center;
             padding: 5rem 2rem 4rem;
-            box-shadow: 0 -5px 15px rgba(37, 211, 102, 0.3); /* Brilho sutil verde de mana */
+            box-shadow: 0 -5px 15px rgba(37, 211, 102, 0.3);
         }
 
         footer .logo {
             height: 50px;
-            filter: drop-shadow(0 0 10px rgba(37, 211, 102, 0.8)); /* Brilho de mana verde na logo */
+            filter: drop-shadow(0 0 10px rgba(37, 211, 102, 0.8));
         }
 
         footer h3 {
@@ -336,7 +365,6 @@
             margin: 0 auto;
         }
 
-        /* Botão do WhatsApp: Cristal Rúnico */
         .whatsapp-button {
             display: inline-flex;
             align-items: center;
@@ -364,18 +392,6 @@
             100% { box-shadow: 0 0 20px rgba(37, 211, 102, 0.6); }
         }
 
-        .whatsapp-button::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('img/green_dust_texture.png'); /* Textura de mana verde */
-            opacity: 0.05;
-            mix-blend-mode: color-dodge;
-        }
-
         .whatsapp-button:hover {
             transform: translateY(-5px) scale(1.05);
             background: radial-gradient(circle, #005d1a 0%, #002a09 60%, #000 100%);
@@ -398,7 +414,7 @@
             padding-top: 2rem;
         }
 
-        /* Responsividade em Campo de Batalha */
+        /* Responsividade */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .hero p { font-size: 1.1rem; }
@@ -457,7 +473,10 @@
 
     <div id="lightbox">
         <span class="close-btn" id="close-btn">&times;</span>
-        <img id="lightbox-img" src="" alt="Token em Destaque">
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Token em Destaque">
+            <div class="lightbox-watermark"></div>
+        </div>
     </div>
 
     <footer id="contato">
