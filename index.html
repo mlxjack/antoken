@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Antoken cria tokens autorais para Magic: The Gathering, com prévias protegidas por watermark e atendimento via WhatsApp."
+    />
+    <title>Antoken | Tokens para Magic</title>
+    <link rel="icon" href="assets/logo-antoken-gold.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header" aria-label="Cabeçalho">
+        <a class="brand" href="#top" aria-label="Antoken">
+          <img src="assets/logo-antoken-light.png" alt="" />
+          <span>Antoken</span>
+        </a>
+        <nav class="nav-links" aria-label="Navegação principal">
+          <a href="#galeria">Galeria</a>
+          <a href="#verso">Verso</a>
+          <a href="#protecao">Proteção</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <a class="header-contact" href="https://wa.me/5511945948096" target="_blank" rel="noreferrer">
+          WhatsApp
+        </a>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-label="Antoken">
+          <div class="hero-backdrop" aria-hidden="true"></div>
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <p class="eyebrow">Tokens premium para Magic</p>
+              <h1>Antoken</h1>
+              <p class="hero-text">
+                Tokens para Magic com presença de carta de verdade: arte marcante, leitura clara e acabamento caprichado
+                para sua mesa.
+              </p>
+              <div class="hero-actions">
+                <a class="primary-action" href="#galeria">Ver artes</a>
+                <a class="secondary-action" href="https://wa.me/5511945948096" target="_blank" rel="noreferrer">
+                  Pedir pelo WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="gallery-section" id="galeria" aria-label="Galeria de tokens">
+          <div class="section-inner">
+            <div class="section-heading">
+              <p class="eyebrow">Catálogo protegido</p>
+              <h2>Artes prontas para entrar em jogo.</h2>
+              <p>
+                Confira as prévias disponíveis. As imagens do site são versões protegidas; para comprar, imprimir ou
+                pedir um token personalizado, fale direto com a Antoken.
+              </p>
+            </div>
+
+            <div class="gallery-tools" aria-label="Ferramentas da galeria">
+              <label class="search-field">
+                <span>Buscar</span>
+                <input id="search-input" type="search" placeholder="Nome ou código da arte" autocomplete="off" />
+              </label>
+              <label class="select-field">
+                <span>Coleção</span>
+                <select id="group-select"></select>
+              </label>
+            </div>
+
+            <div class="gallery-status" id="gallery-status" aria-live="polite"></div>
+            <div class="gallery-grid" id="gallery-grid"></div>
+          </div>
+        </section>
+
+        <section class="back-section" id="verso" aria-label="Verso das cartas">
+          <div class="section-inner back-grid">
+            <div class="back-copy">
+              <p class="eyebrow">Verso das cartas</p>
+              <h2>Identidade Antoken dos dois lados.</h2>
+              <p>
+                Este é o verso usado nos tokens: visual escuro, marca forte e acabamento de card para manter a mesa
+                bonita mesmo quando a ficha estiver virada.
+              </p>
+            </div>
+            <figure class="back-figure">
+              <img src="assets/card-back.webp" alt="Verso das cartas Antoken" draggable="false" />
+              <figcaption>Prévia do verso padrão Antoken.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="protection-section" id="protecao" aria-label="Proteção das artes">
+          <div class="section-inner protection-grid">
+            <div class="protection-copy">
+              <p class="eyebrow">Direitos autorais</p>
+              <h2>A vitrine mostra a arte sem entregar o arquivo original.</h2>
+              <p>
+                Cada imagem publicada aqui é uma prévia otimizada com watermark aplicado. O clique com o botão direito
+                exibe o aviso de copyright e direciona o contato para o WhatsApp da Antoken.
+              </p>
+            </div>
+            <div class="protection-panel">
+              <span class="panel-kicker">Aviso de uso</span>
+              <p>
+                As artes pertencem à Antoken. Para comprar, usar em um pedido ou solicitar uma ficha exclusiva, chame:
+                <a href="https://wa.me/5511945948096" target="_blank" rel="noreferrer">(11) 94594-8096</a>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="contact-section" id="contato" aria-label="Contato Antoken">
+          <div class="section-inner contact-inner">
+            <div>
+              <p class="eyebrow">Encomendas e dúvidas</p>
+              <h2>Quer um token específico?</h2>
+              <p>Envie a ficha, o tema do deck ou a ideia da arte. A resposta vem pelo WhatsApp.</p>
+            </div>
+            <a class="primary-action contact-action" href="https://wa.me/5511945948096" target="_blank" rel="noreferrer">
+              Abrir WhatsApp
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span>Antoken © 2026</span>
+        <span>
+          Produto independente. Magic: The Gathering pertence aos seus respectivos proprietários; a Antoken não é
+          afiliada ou endossada oficialmente.
+        </span>
+      </footer>
+    </div>
+
+    <div class="copyright-toast" id="copyright-toast" role="status" aria-live="polite">
+      <strong>Arte protegida</strong>
+      <span>Estas imagens possuem direitos autorais. Entre em contato: (11) 94594-8096.</span>
+    </div>
+
+    <dialog class="art-dialog" id="art-dialog" aria-label="Visualização da arte">
+      <button class="dialog-close" type="button" id="dialog-close" aria-label="Fechar">×</button>
+      <button class="dialog-nav dialog-prev" type="button" id="dialog-prev" aria-label="Arte anterior">‹</button>
+      <figure class="dialog-figure">
+        <img id="dialog-image" alt="" draggable="false" />
+        <figcaption>
+          <strong id="dialog-title"></strong>
+          <span id="dialog-source"></span>
+        </figcaption>
+      </figure>
+      <button class="dialog-nav dialog-next" type="button" id="dialog-next" aria-label="Próxima arte">›</button>
+    </dialog>
+
+    <script src="assets/gallery-data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
