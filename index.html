@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Antoken cria tokens autorais para Magic: The Gathering, com prévias protegidas por watermark e atendimento via WhatsApp."
+      content="Antoken cria tokens autorais para Magic: The Gathering — da coleção clássica com prévias em watermark à nova Ecos de Kamigawa, fotografada em display. Atendimento via WhatsApp."
     />
     <title>Antoken | Tokens para Magic</title>
     <link rel="icon" href="assets/logo-antoken-gold.png" />
@@ -19,6 +19,7 @@
           <span>Antoken</span>
         </a>
         <nav class="nav-links" aria-label="Navegação principal">
+          <a href="#kamigawa">Kamigawa<span class="nav-dot" aria-hidden="true"></span></a>
           <a href="#galeria">Galeria</a>
           <a href="#verso">Verso</a>
           <a href="#protecao">Proteção</a>
@@ -34,6 +35,10 @@
           <div class="hero-backdrop" aria-hidden="true"></div>
           <div class="hero-inner">
             <div class="hero-copy">
+              <a class="hero-badge" href="#kamigawa">
+                <span class="hanko" aria-hidden="true">新</span>
+                Nova coleção: Ecos de Kamigawa
+              </a>
               <p class="eyebrow">Tokens premium para Magic</p>
               <h1>Antoken</h1>
               <p class="hero-text">
@@ -50,7 +55,36 @@
           </div>
         </section>
 
-        <section class="gallery-section" id="galeria" aria-label="Galeria de tokens">
+        <section
+          class="gallery-section kamigawa-section"
+          id="kamigawa"
+          aria-label="Galeria Ecos de Kamigawa"
+          data-collection="kamigawa"
+        >
+          <div class="section-inner">
+            <div class="section-heading">
+              <p class="eyebrow kamigawa-eyebrow"><span class="hanko" aria-hidden="true">新</span>Coleção nova · display físico</p>
+              <h2>Ecos de Kamigawa.</h2>
+              <p>
+                Essa leva foi fotografada sobre um display físico de verdade, com cenário e profundidade — não é um
+                recorte plano da arte. Como a imagem não dá pra recortar e imprimir como carta, essas fotos não levam
+                marca d’água.
+              </p>
+            </div>
+
+            <div class="gallery-tools gallery-tools--single" aria-label="Buscar na coleção Kamigawa">
+              <label class="search-field">
+                <span>Buscar</span>
+                <input type="search" placeholder="Nome do token" autocomplete="off" data-search />
+              </label>
+            </div>
+
+            <div class="gallery-status" data-status aria-live="polite"></div>
+            <div class="gallery-grid" data-grid></div>
+          </div>
+        </section>
+
+        <section class="gallery-section" id="galeria" aria-label="Galeria de tokens" data-collection="classic">
           <div class="section-inner">
             <div class="section-heading">
               <p class="eyebrow">Catálogo protegido</p>
@@ -64,16 +98,16 @@
             <div class="gallery-tools" aria-label="Ferramentas da galeria">
               <label class="search-field">
                 <span>Buscar</span>
-                <input id="search-input" type="search" placeholder="Nome ou código da arte" autocomplete="off" />
+                <input type="search" placeholder="Nome ou código da arte" autocomplete="off" data-search />
               </label>
               <label class="select-field">
                 <span>Coleção</span>
-                <select id="group-select"></select>
+                <select data-group-select></select>
               </label>
             </div>
 
-            <div class="gallery-status" id="gallery-status" aria-live="polite"></div>
-            <div class="gallery-grid" id="gallery-grid"></div>
+            <div class="gallery-status" data-status aria-live="polite"></div>
+            <div class="gallery-grid" data-grid></div>
           </div>
         </section>
 
@@ -100,8 +134,10 @@
               <p class="eyebrow">Direitos autorais</p>
               <h2>A vitrine mostra a arte sem entregar o arquivo original.</h2>
               <p>
-                Cada imagem publicada aqui é uma prévia otimizada com watermark aplicado. O clique com o botão direito
-                exibe o aviso de copyright e direciona o contato para o WhatsApp da Antoken.
+                As artes recortadas do catálogo clássico levam uma prévia com watermark aplicado, e o clique com o
+                botão direito exibe o aviso de copyright. Já as peças fotografadas em display — como a Ecos de
+                Kamigawa — são cenas reais da mesa, não um arquivo pronto pra imprimir, então dispensam a marca
+                d’água.
               </p>
             </div>
             <div class="protection-panel">
@@ -142,17 +178,35 @@
       <span>Estas imagens possuem direitos autorais. Entre em contato: (11) 94594-8096.</span>
     </div>
 
-    <dialog class="art-dialog" id="art-dialog" aria-label="Visualização da arte">
-      <button class="dialog-close" type="button" id="dialog-close" aria-label="Fechar">×</button>
-      <button class="dialog-nav dialog-prev" type="button" id="dialog-prev" aria-label="Arte anterior">‹</button>
+    <dialog
+      class="art-dialog kamigawa-dialog"
+      aria-label="Visualização da arte · Ecos de Kamigawa"
+      data-dialog
+      data-dialog-for="kamigawa"
+    >
+      <button class="dialog-close" type="button" aria-label="Fechar" data-dialog-close>×</button>
+      <button class="dialog-nav dialog-prev" type="button" aria-label="Arte anterior" data-dialog-prev>‹</button>
       <figure class="dialog-figure">
-        <img id="dialog-image" alt="" draggable="false" />
+        <img alt="" draggable="false" data-dialog-image />
         <figcaption>
-          <strong id="dialog-title"></strong>
-          <span id="dialog-source"></span>
+          <strong data-dialog-title></strong>
+          <span data-dialog-source></span>
         </figcaption>
       </figure>
-      <button class="dialog-nav dialog-next" type="button" id="dialog-next" aria-label="Próxima arte">›</button>
+      <button class="dialog-nav dialog-next" type="button" aria-label="Próxima arte" data-dialog-next>›</button>
+    </dialog>
+
+    <dialog class="art-dialog" aria-label="Visualização da arte" data-dialog data-dialog-for="classic">
+      <button class="dialog-close" type="button" aria-label="Fechar" data-dialog-close>×</button>
+      <button class="dialog-nav dialog-prev" type="button" aria-label="Arte anterior" data-dialog-prev>‹</button>
+      <figure class="dialog-figure">
+        <img alt="" draggable="false" data-dialog-image />
+        <figcaption>
+          <strong data-dialog-title></strong>
+          <span data-dialog-source></span>
+        </figcaption>
+      </figure>
+      <button class="dialog-nav dialog-next" type="button" aria-label="Próxima arte" data-dialog-next>›</button>
     </dialog>
 
     <script src="assets/gallery-data.js"></script>
