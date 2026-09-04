@@ -580,10 +580,10 @@ select {
 .kamigawa-section .art-frame::after {
   position: absolute;
   inset: auto 0 0;
-  height: 58%;
+  height: 38%;
   content: "";
   pointer-events: none;
-  background: linear-gradient(180deg, transparent, rgba(5, 4, 3, 0.92));
+  background: linear-gradient(180deg, transparent, rgba(5, 4, 3, 0.8) 85%);
 }
 
 .kamigawa-section .art-meta {
